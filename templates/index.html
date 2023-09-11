@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh; /* make the body take the full viewport height */
+            display: flex;
+            flex-direction: column; /* stack children vertically */
+            justify-content: center; /* center children vertically */
+            align-items: center; /* center children horizontally */
+        }
+    </style>
+</head>
+<body>
+    <h1>Ownership Visualizer</h1>
+    <p>Write the name of a company below to see its ownership! </p>
+    <form action="/submit" method="post">
+        <label for="company">Company </label><br>
+        <input type="text" id="company" name="company" value="{{ submitted_company }}"><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if submitted_company %}
+    <p>You last searched for: <strong>{{ submitted_company }}</strong></p>
+    {% endif %}
+    {% if img_data %}
+    <img src="data:image/png;base64,{{ img_data }}" alt="Generated Treemap" style="width: 50vw; height: 100vh; object-fit: cover;">
+{% endif %}
+</body>
+</html>
